@@ -15,7 +15,6 @@ $(document).ready(function () {
     if (response.statusText === "OK") {
       apiStatus.classList.add("available");
     } else {
-      console.log("It's not OK, API say that.");
       apiStatus.classList.remove("available");
     }
   }).catch((error) => {
