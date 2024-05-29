@@ -1,12 +1,18 @@
 $(document).ready(function () {
-  const nameAmenity = [];
-  $("input:checkbox").click(function () {
-    if ($(this).is(":checked")) {
-      nameAmenity.push($(this).attr("data-name"));
+  let checkedAmenities = {};
+
+  $('input[type="checkbox"]').change(function () {
+    if (this.checked) {
+      checkedAmenities[$(this).data("id")] = $(this).data("name");
     } else {
-      const nameIndex = nameAmenity.indexOf($(this).attr("data-name"));
-      nameAmenity.splice(nameIndex, 1);
+      delete checkedAmenities[$(this).data("id")];
     }
-    $(".amenities h4").text(nameAmenity.join(", "));
+
+    let lst = Object.values(checkedAmenities);
+    if (lst.length > 0) {
+      $("div.amenities h4").text(Object.values(checkedAmenities).join(", "));
+    } else {
+      $("div.amenities h4").html("&nbsp;");
+    }
   });
 });
